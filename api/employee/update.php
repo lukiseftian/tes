@@ -16,12 +16,13 @@ include_once '../../models/employees.php';
 
 // employee values
 $item->name = $data->name;
-$item->email = $data->email;
-$item->age = $data->age;
-$item->designation = $data->designation;
+$item->alamat = $data->alamat;
+$item->umur = $data->umur;
+$item->jenisusaha = $data->jenisusaha;
 $item->created = date('Y-m-d H:i:s');
-        if($item->updateEmployee()){
-        echo json_encode("Employee data updated.");
-} else{
-    echo json_encode("Data could not be updated");
-}
+       
+         if($item->createEmployee()){
+        echo json_encode(['message'=>'Employee created successfully.']);
+    } else{
+        echo json_encode(['message'=>'Employee could not be created.']);
+    }

@@ -1,7 +1,7 @@
 <?php
 class Database {
 private $host = "localhost";
-private $database_name = "api_praktikum";
+private $database_name = "data_umkm";
 private $username = "root";
 private $password = "";
 public $conn;

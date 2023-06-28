@@ -21,9 +21,9 @@ if(isset($_GET['id'])){ //cek id
     $emp_arr = array(
     "id" => $item->id,
     "name" => $item->name,
-    "email" => $item->email,
-    "age" => $item->age,
-    "designation" => $item->designation,
+    "email" => $item->alamat,
+    "age" => $item->umur,
+    "designation" => $item->jenisusaha,
     "created" => $item->created
  );
 
@@ -52,9 +52,9 @@ if($itemCount > 0){
         $e = array(
             "id" => $id,
             "name" => $name,
-            "email" => $email,
-            "age" => $age,
-            "designation" => $designation,
+            "alamat" => $alamat,
+            "umur" => $umur,
+            "jenisusaha" => $jenisusaha,
             "created" => $created
         );
         array_push($employeeArr["body"], $e);

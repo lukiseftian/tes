@@ -13,13 +13,14 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-AllowHeaders,
     $item = new Employee($db);
     $data = json_decode(file_get_contents("php://input"));
     $item->name = $data->name;
-    $item->email = $data->email;
-    $item->age = $data->age;
-    $item->designation = $data->designation;
+    $item->alamat = $data->alamat;
+    $item->umur = $data->umur;
+    $item->jenisusaha= $data->jenisusaha;
     $item->created = date('Y-m-d H:i:s');
-        if($item->createEmployee()){
-            echo 'Employee created successfully.';
+       
+         if($item->createEmployee()){
+        echo json_encode(['message'=>'Tambah Data Peserta UMKM Berhasil.']);
     } else{
-    echo 'Employee could not be created.';
-}
+        echo json_encode(['message'=>'Employee could not be created.']);
+    }
 ?>

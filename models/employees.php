@@ -7,9 +7,9 @@ private $db_table = "Employee";
 // Columns
 public $id;
 public $name;
-public $email;
-public $age;
-public $designation;
+public $alamat;
+public $umur;
+public $jenisusaha;
 public $created;
 // Db connection
     public function __construct($db){
@@ -17,7 +17,7 @@ public $created;
 }
 // GET ALL
 public function getEmployees(){
-    $sqlQuery = "SELECT id, name, email, age, designation, created FROM "
+    $sqlQuery = "SELECT id, name, alamat, umur, jenisusaha, created FROM "
 . $this->db_table . "";
         $stmt = $this->conn->prepare($sqlQuery);
         $stmt->execute();
@@ -29,24 +29,24 @@ public function getEmployees(){
     ". $this->db_table ."
         SET
         name = :name,
-        email = :email,
-        age = :age,
-        designation = :designation,
+        alamat = :alamat,
+        umur = :umur,
+        jenisusaha = :jenisusaha,
         created = :created";
 $stmt = $this->conn->prepare($sqlQuery);
 
 // sanitize
     $this->name=htmlspecialchars(strip_tags($this->name));
-    $this->email=htmlspecialchars(strip_tags($this->email));
-    $this->age=htmlspecialchars(strip_tags($this->age));
-    $this->designation=htmlspecialchars(strip_tags($this->designation));
+    $this->alamat=htmlspecialchars(strip_tags($this->alamat));
+    $this->umur=htmlspecialchars(strip_tags($this->umur));
+    $this->jenisusaha=htmlspecialchars(strip_tags($this->jenisusaha));
     $this->created=htmlspecialchars(strip_tags($this->created));
 
 // bind data
     $stmt->bindParam(":name", $this->name);
-    $stmt->bindParam(":email", $this->email);
-    $stmt->bindParam(":age", $this->age);
-    $stmt->bindParam(":designation", $this->designation);
+    $stmt->bindParam(":alamat", $this->alamat);
+    $stmt->bindParam(":umur", $this->umur);
+    $stmt->bindParam(":jenisusaha", $this->jenisusaha);
     $stmt->bindParam(":created", $this->created);
         if($stmt->execute()){
             return true;
@@ -56,7 +56,7 @@ $stmt = $this->conn->prepare($sqlQuery);
 
 // READ single
         public function getSingleEmployee(){
-    $sqlQuery = "SELECT id, name, email, age, designation, created FROM ". $this->db_table ." WHERE id = ? LIMIT 0,1";
+    $sqlQuery = "SELECT id, name, alamat, umur, jenisusaha, created FROM ". $this->db_table ." WHERE id = ? LIMIT 0,1";
 
     $stmt = $this->conn->prepare($sqlQuery);
     $stmt->bindParam(1, $this->id);
@@ -64,9 +64,9 @@ $stmt = $this->conn->prepare($sqlQuery);
     $dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
     $this->name = $dataRow['name'];
-    $this->email = $dataRow['email'];
-    $this->age = $dataRow['age'];
-    $this->designation = $dataRow['designation'];
+    $this->alamat = $dataRow['alamat'];
+    $this->umur = $dataRow['umur'];
+    $this->jenisusaha = $dataRow['jenisusaha'];
     $this->created = $dataRow['created'];
 }
 // UPDATE
@@ -76,26 +76,26 @@ $sqlQuery = "UPDATE
 ". $this->db_table ."
             SET
             name = :name,
-            email = :email,
-            age = :age,
-            designation = :designation,
+            alamat = :alamat,
+            umur = :umur,
+            jenisusaha = :jenisusaha,
             created = :created
             WHERE
             id = :id";
 
     $stmt = $this->conn->prepare($sqlQuery);
     $this->name=htmlspecialchars(strip_tags($this->name));
-    $this->email=htmlspecialchars(strip_tags($this->email));
-    $this->age=htmlspecialchars(strip_tags($this->age));
-    $this->designation=htmlspecialchars(strip_tags($this->designation));
+    $this->alamat=htmlspecialchars(strip_tags($this->alamat));
+    $this->umur=htmlspecialchars(strip_tags($this->umur));
+    $this->jenisusaha=htmlspecialchars(strip_tags($this->jenisusaha));
     $this->created=htmlspecialchars(strip_tags($this->created));
     $this->id=htmlspecialchars(strip_tags($this->id));
 // bind data
 
     $stmt->bindParam(":name", $this->name);
-    $stmt->bindParam(":email", $this->email);
-    $stmt->bindParam(":age", $this->age);
-    $stmt->bindParam(":designation", $this->designation);
+    $stmt->bindParam(":alamat", $this->alamat);
+    $stmt->bindParam(":umur", $this->umur);
+    $stmt->bindParam(":jenisusaha", $this->jenisusaha);
     $stmt->bindParam(":created", $this->created);
     $stmt->bindParam(":id", $this->id);
         if($stmt->execute()){

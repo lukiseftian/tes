@@ -12,7 +12,7 @@ $item = new Employee($db);
 $data = json_decode(file_get_contents("php://input"));
 $item->id = $data->id;
 if($item->deleteEmployee()){
-echo json_encode("Employee deleted.");
+echo json_encode("Data Berhasil Dihapus.");
 } else{
 echo json_encode("Data could not be deleted");
 }
